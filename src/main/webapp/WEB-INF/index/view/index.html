@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>KatStock</title>
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="stylesheet" href="resources/external/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/app/css/style.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <h1 class="success">welcome to <strong>KatStock</strong>!</h1>
+        </div>
+
+        <div id="menu"> <!-- Блок меню -->
+            <ul>
+                <li><a href="#!/click">Click</a></li>
+            </ul>
+        </div>
+
+        <div id="partial-view"></div>
+
+        <script id='bookTemplate' type='text/template'>
+            <h3 class="title">Title (click!!!)</h3>
+            <div class="description">
+                <p class="release-date">date here</p>
+                <p>haha</p>
+            </div>
+        </script>
+
+        <!-- External -->
+        <script src="resources/external/jquery/jquery-1.11.3.min.js"></script>
+        <script src="resources/external/bootstrap/js/bootstrap.min.js"></script>
+        <script src="resources/external/backbone/underscore.js"></script>
+        <script src="resources/external/backbone/backbone-min.js"></script>
+
+        <!-- App -->
+        <script src="resources/app/js/View.js"></script>
+        <script src="resources/app/js/RouteController.js"></script>
+    </body>
+</html>
