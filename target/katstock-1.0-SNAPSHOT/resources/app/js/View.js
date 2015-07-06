@@ -7,7 +7,7 @@ var Click = Backbone.View.extend({
     template : _.template($("#bookTemplate").html()),
 
     render : function() {
-        this.$el.html(this.template());
+        this.$el.html(this.template({name : "Kate"}));
         return this;
     },
 
