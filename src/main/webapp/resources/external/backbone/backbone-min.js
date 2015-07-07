@@ -64,8 +64,8 @@
 
   // Turn on `emulateJSON` to support legacy servers that can't deal with direct
   // `application/json` requests ... this will encode the body as
-  // `application/x-www-form-urlencoded` instead and will send the model in a
-  // form param named `model`.
+  // `application/x-www-form-urlencoded` instead and will send the entity in a
+  // form param named `entity`.
   Backbone.emulateJSON = false;
 
   // Proxy Underscore methods to a Backbone class' prototype using a
@@ -372,7 +372,7 @@
   // A discrete chunk of data and a bunch of useful, related methods for
   // performing computations and transformations on that data.
 
-  // Create a new model with the specified attributes. A client id (`cid`)
+  // Create a new entity with the specified attributes. A client id (`cid`)
   // is automatically generated and assigned for you.
   var Model = Backbone.Model = function(attributes, options) {
     var attrs = attributes || {};
@@ -401,20 +401,20 @@
     idAttribute: 'id',
 
     // The prefix is used to create the client id which is used to identify models locally.
-    // You may want to override this if you're experiencing name clashes with model ids.
+    // You may want to override this if you're experiencing name clashes with entity ids.
     cidPrefix: 'c',
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
     initialize: function(){},
 
-    // Return a copy of the model's `attributes` object.
+    // Return a copy of the entity's `attributes` object.
     toJSON: function(options) {
       return _.clone(this.attributes);
     },
 
     // Proxy `Backbone.sync` by default -- but override this if you need
-    // custom syncing semantics for *this* particular model.
+    // custom syncing semantics for *this* particular entity.
     sync: function() {
       return Backbone.sync.apply(this, arguments);
     },
@@ -440,8 +440,8 @@
       return !!_.iteratee(attrs, this)(this.attributes);
     },
 
-    // Set a hash of model attributes on the object, firing `"change"`. This is
-    // the core primitive operation of a model, updating the data and notifying
+    // Set a hash of entity attributes on the object, firing `"change"`. This is
+    // the core primitive operation of a entity, updating the data and notifying
     // anyone who needs to know about the change in state. The heart of the beast.
     set: function(key, val, options) {
       if (key == null) return this;
@@ -514,20 +514,20 @@
       return this;
     },
 
-    // Remove an attribute from the model, firing `"change"`. `unset` is a noop
+    // Remove an attribute from the entity, firing `"change"`. `unset` is a noop
     // if the attribute doesn't exist.
     unset: function(attr, options) {
       return this.set(attr, void 0, _.extend({}, options, {unset: true}));
     },
 
-    // Clear all attributes on the model, firing `"change"`.
+    // Clear all attributes on the entity, firing `"change"`.
     clear: function(options) {
       var attrs = {};
       for (var key in this.attributes) attrs[key] = void 0;
       return this.set(attrs, _.extend({}, options, {unset: true}));
     },
 
-    // Determine if the model has changed since the last `"change"` event.
+    // Determine if the entity has changed since the last `"change"` event.
     // If you specify an attribute name, determine if that attribute has changed.
     hasChanged: function(attr) {
       if (attr == null) return !_.isEmpty(this.changed);
@@ -538,7 +538,7 @@
     // false if there are no changed attributes. Useful for determining what
     // parts of a view need to be updated and/or what attributes need to be
     // persisted to the server. Unset attributes will be set to undefined.
-    // You can also pass an attributes object to diff against the model,
+    // You can also pass an attributes object to diff against the entity,
     // determining if there *would be* a change.
     changedAttributes: function(diff) {
       if (!diff) return this.hasChanged() ? _.clone(this.changed) : false;
@@ -559,13 +559,13 @@
       return this._previousAttributes[attr];
     },
 
-    // Get all of the attributes of the model at the time of the previous
+    // Get all of the attributes of the entity at the time of the previous
     // `"change"` event.
     previousAttributes: function() {
       return _.clone(this._previousAttributes);
     },
 
-    // Fetch the model from the server, merging the response with the model's
+    // Fetch the entity from the server, merging the response with the entity's
     // local attributes. Any changed attributes will trigger a "change" event.
     fetch: function(options) {
       options = _.extend({parse: true}, options);
@@ -581,8 +581,8 @@
       return this.sync('read', this, options);
     },
 
-    // Set a hash of model attributes, and sync the model to the server.
-    // If the server returns an attributes hash that differs, the model's
+    // Set a hash of entity attributes, and sync the entity to the server.
+    // If the server returns an attributes hash that differs, the entity's
     // state will be `set` again.
     save: function(key, val, options) {
       // Handle both `"key", value` and `{key: value}` -style arguments.
@@ -599,7 +599,7 @@
 
       // If we're not waiting and attributes exist, save acts as
       // `set(attr).save(null, opts)` with validation. Otherwise, check if
-      // the model will be valid when the attributes, if any, are set.
+      // the entity will be valid when the attributes, if any, are set.
       if (attrs && !wait) {
         if (!this.set(attrs, options)) return false;
       } else {
@@ -635,8 +635,8 @@
       return xhr;
     },
 
-    // Destroy this model on the server if it was already persisted.
-    // Optimistically removes the model from its collection, if it has one.
+    // Destroy this entity on the server if it was already persisted.
+    // Optimistically removes the entity from its collection, if it has one.
     // If `wait: true` is passed, waits for the server to respond before removal.
     destroy: function(options) {
       options = options ? _.clone(options) : {};
@@ -666,7 +666,7 @@
       return xhr;
     },
 
-    // Default URL for the model's representation on the server -- if you're
+    // Default URL for the entity's representation on the server -- if you're
     // using Backbone's restful methods, override this to change the endpoint
     // that will be called.
     url: function() {
@@ -680,27 +680,27 @@
     },
 
     // **parse** converts a response into the hash of attributes to be `set` on
-    // the model. The default implementation is just to pass the response along.
+    // the entity. The default implementation is just to pass the response along.
     parse: function(resp, options) {
       return resp;
     },
 
-    // Create a new model with identical attributes to this one.
+    // Create a new entity with identical attributes to this one.
     clone: function() {
       return new this.constructor(this.attributes);
     },
 
-    // A model is new if it has never been saved to the server, and lacks an id.
+    // A entity is new if it has never been saved to the server, and lacks an id.
     isNew: function() {
       return !this.has(this.idAttribute);
     },
 
-    // Check if the model is currently in a valid state.
+    // Check if the entity is currently in a valid state.
     isValid: function(options) {
       return this._validate({}, _.defaults({validate: true}, options));
     },
 
-    // Run validation against the next complete set of model attributes,
+    // Run validation against the next complete set of entity attributes,
     // returning `true` if all is well. Otherwise, fire an `"invalid"` event.
     _validate: function(attrs, options) {
       if (!options.validate || !this.validate) return true;
@@ -730,7 +730,7 @@
   // belonging to this particular author, and so on. Collections maintain
   // indexes of their models, both in order, and for lookup by `id`.
 
-  // Create a new **Collection**, perhaps to contain a specific type of `model`.
+  // Create a new **Collection**, perhaps to contain a specific type of `entity`.
   // If a `comparator` is specified, the Collection will maintain
   // its models in sort order, as they're added and removed.
   var Collection = Backbone.Collection = function(models, options) {
@@ -749,7 +749,7 @@
   // Define the Collection's inheritable methods.
   _.extend(Collection.prototype, Events, {
 
-    // The default model for a collection is just a **Backbone.Model**.
+    // The default entity for a collection is just a **Backbone.Model**.
     // This should be overridden in most cases.
     model: Model,
 
@@ -768,12 +768,12 @@
       return Backbone.sync.apply(this, arguments);
     },
 
-    // Add a model, or list of models to the set.
+    // Add a entity, or list of models to the set.
     add: function(models, options) {
       return this.set(models, _.extend({merge: false}, options, addOptions));
     },
 
-    // Remove a model, or a list of models from the set.
+    // Remove a entity, or a list of models from the set.
     remove: function(models, options) {
       options = _.extend({}, options);
       var singular = !_.isArray(models);
@@ -803,13 +803,13 @@
       var order = !sortable && add && remove ? [] : false;
       var orderChanged = false;
 
-      // Turn bare objects into model references, and prevent invalid models
+      // Turn bare objects into entity references, and prevent invalid models
       // from being added.
       for (var i = 0; i < models.length; i++) {
         attrs = models[i];
 
         // If a duplicate is found, prevent it from being added and
-        // optionally merge it into the existing model.
+        // optionally merge it into the existing entity.
         if (existing = this.get(attrs)) {
           if (remove) modelMap[existing.cid] = true;
           if (merge && attrs !== existing) {
@@ -820,7 +820,7 @@
           }
           models[i] = existing;
 
-        // If this is a new, valid model, push it to the `toAdd` list.
+        // If this is a new, valid entity, push it to the `toAdd` list.
         } else if (add) {
           model = models[i] = this._prepareModel(attrs, options);
           if (!model) continue;
@@ -835,7 +835,7 @@
         if (order && (model.isNew() || !modelMap[id])) {
           order.push(model);
 
-          // Check to see if this is actually a new model at this index.
+          // Check to see if this is actually a new entity at this index.
           orderChanged = orderChanged || !this.models[i] || model.cid !== this.models[i].cid;
         }
 
@@ -881,7 +881,7 @@
         if (toAdd.length || toRemove.length) this.trigger('update', this, options);
       }
 
-      // Return the added (or merged) model (or models).
+      // Return the added (or merged) entity (or models).
       return singular ? models[0] : models;
     },
 
@@ -901,23 +901,23 @@
       return models;
     },
 
-    // Add a model to the end of the collection.
+    // Add a entity to the end of the collection.
     push: function(model, options) {
       return this.add(model, _.extend({at: this.length}, options));
     },
 
-    // Remove a model from the end of the collection.
+    // Remove a entity from the end of the collection.
     pop: function(options) {
       var model = this.at(this.length - 1);
       return this.remove(model, options);
     },
 
-    // Add a model to the beginning of the collection.
+    // Add a entity to the beginning of the collection.
     unshift: function(model, options) {
       return this.add(model, _.extend({at: 0}, options));
     },
 
-    // Remove a model from the beginning of the collection.
+    // Remove a entity from the beginning of the collection.
     shift: function(options) {
       var model = this.at(0);
       return this.remove(model, options);
@@ -928,14 +928,14 @@
       return slice.apply(this.models, arguments);
     },
 
-    // Get a model from the set by id.
+    // Get a entity from the set by id.
     get: function(obj) {
       if (obj == null) return void 0;
       var id = this.modelId(this._isModel(obj) ? obj.attributes : obj);
       return this._byId[obj] || this._byId[id] || this._byId[obj.cid];
     },
 
-    // Get the model at the given index.
+    // Get the entity at the given index.
     at: function(index) {
       if (index < 0) index += this.length;
       return this.models[index];
@@ -950,7 +950,7 @@
       });
     },
 
-    // Return the first model with matching attributes. Useful for simple cases
+    // Return the first entity with matching attributes. Useful for simple cases
     // of `find`.
     findWhere: function(attrs) {
       return this.where(attrs, true);
@@ -974,7 +974,7 @@
       return this;
     },
 
-    // Pluck an attribute from each model in the collection.
+    // Pluck an attribute from each entity in the collection.
     pluck: function(attr) {
       return _.invoke(this.models, 'get', attr);
     },
@@ -996,7 +996,7 @@
       return this.sync('read', this, options);
     },
 
-    // Create a new instance of a model in this collection. Add the model to the
+    // Create a new instance of a entity in this collection. Add the entity to the
     // collection immediately, unless `wait: true` is passed, in which case we
     // wait for the server to agree.
     create: function(model, options) {
@@ -1042,7 +1042,7 @@
       this._byId  = {};
     },
 
-    // Prepare a hash of attributes (or other model) to be added to this
+    // Prepare a hash of attributes (or other entity) to be added to this
     // collection.
     _prepareModel: function(attrs, options) {
       if (this._isModel(attrs)) {
@@ -1080,13 +1080,13 @@
       return removed.length ? removed : false;
     },
 
-    // Method for checking whether an object should be considered a model for
+    // Method for checking whether an object should be considered a entity for
     // the purposes of adding to the collection.
     _isModel: function (model) {
       return model instanceof Model;
     },
 
-    // Internal method to create a model's ties to a collection.
+    // Internal method to create a entity's ties to a collection.
     _addReference: function(model, options) {
       this._byId[model.cid] = model;
       var id = this.modelId(model.attributes);
@@ -1094,7 +1094,7 @@
       model.on('all', this._onModelEvent, this);
     },
 
-    // Internal method to sever a model's ties to a collection.
+    // Internal method to sever a entity's ties to a collection.
     _removeReference: function(model, options) {
       delete this._byId[model.cid];
       var id = this.modelId(model.attributes);
@@ -1103,7 +1103,7 @@
       model.off('all', this._onModelEvent, this);
     },
 
-    // Internal method called every time a model in the set fires an event.
+    // Internal method called every time a entity in the set fires an event.
     // Sets need to update their indexes when models change ids. All other
     // events simply proxy through. "add" and "remove" events that originate
     // in other collections are ignored.
@@ -1319,8 +1319,8 @@
 
   // Override this function to change the manner in which Backbone persists
   // models to the server. You will be passed the type of request, and the
-  // model in question. By default, makes a RESTful Ajax request
-  // to the model's `url()`. Some possible customizations could be:
+  // entity in question. By default, makes a RESTful Ajax request
+  // to the entity's `url()`. Some possible customizations could be:
   //
   // * Use `setTimeout` to batch rapid-fire updates into a single request.
   // * Send up the models as XML instead of JSON.
@@ -1329,7 +1329,7 @@
   // Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE` requests
   // as `POST`, with a `_method` parameter containing the true HTTP method,
   // as well as all requests with the body as `application/x-www-form-urlencoded`
-  // instead of `application/json` with the model in a param named `model`.
+  // instead of `application/json` with the entity in a param named `entity`.
   // Useful when interfacing with server-side languages like **PHP** that make
   // it difficult to read the body of `PUT` requests.
   Backbone.sync = function(method, model, options) {
@@ -1851,7 +1851,7 @@
     return child;
   };
 
-  // Set up inheritance for the model, collection, router, view and history.
+  // Set up inheritance for the entity, collection, router, view and history.
   Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
 
   // Throw an error when a URL is needed, and none is supplied.

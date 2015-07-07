@@ -157,20 +157,20 @@ CREATE TABLE katstock.place (
 		ON DELETE SET NULL
 );
 
-CREATE SEQUENCE stock_item_seq ;
-CREATE SEQUENCE waybill_seq ;
-CREATE SEQUENCE organization_seq ;
-CREATE SEQUENCE stock_organization_seq ;
-CREATE SEQUENCE place_type_seq ;
-CREATE SEQUENCE place_seq ;
-CREATE SEQUENCE position_seq ;
-CREATE SEQUENCE state_seq ;
-CREATE SEQUENCE goods_seq ;
-CREATE SEQUENCE measure_seq ;
-CREATE SEQUENCE user_seq ;
-CREATE SEQUENCE role_seq ;
-CREATE SEQUENCE stock_seq ;
-CREATE SEQUENCE address_seq ;
+CREATE SEQUENCE katstock.stock_item_seq ;
+CREATE SEQUENCE katstock.waybill_seq ;
+CREATE SEQUENCE katstock.organization_seq ;
+CREATE SEQUENCE katstock.stock_organization_seq ;
+CREATE SEQUENCE katstock.place_type_seq ;
+CREATE SEQUENCE katstock.place_seq ;
+CREATE SEQUENCE katstock.position_seq ;
+CREATE SEQUENCE katstock.state_seq ;
+CREATE SEQUENCE katstock.goods_seq ;
+CREATE SEQUENCE katstock.measure_seq ;
+CREATE SEQUENCE katstock.user_seq ;
+CREATE SEQUENCE katstock.role_seq ;
+CREATE SEQUENCE katstock.stock_seq ;
+CREATE SEQUENCE katstock.address_seq ;
 
 
 
