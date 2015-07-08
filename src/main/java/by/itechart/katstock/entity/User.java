@@ -49,7 +49,7 @@ public class User extends BaseEntity {
         this.surname = surname;
     }
 
-    @Column(name = "email", length = 40)
+    @Column(name = "email", nullable = false,length = 40)
     public String getEmail() {
         return email;
     }

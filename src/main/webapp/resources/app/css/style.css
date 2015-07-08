@@ -1,5 +1,33 @@
 
-#error,
-#success{
-    display : none;
+body {
+    font-family : "Times New Roman", Times, serif;!important;
+    color : #585858;
 }
+
+.navbar-content {
+    margin : 0 1em 0;
+}
+
+.wrapper {
+    margin : 51px 0 0;
+    padding : 2em;
+    min-height : 100%;
+}
+
+.footer {
+    margin : -5em 0 0;
+    height : 5em;
+    width : 100%;
+    float : left;
+}
+
+.footer-container {
+    padding : 0 auto 0;
+    margin : 1%;
+}
+
+.white-style-block {
+    background-color : #FFFFFF;
+    border-color : #D8D8D8;
+}
+

@@ -53,7 +53,7 @@ CREATE TABLE katstock.user (
 	user_id BIGINT PRIMARY KEY,
 	user_name VARCHAR(20) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
-	email VARCHAR(40),
+	email VARCHAR(40) NOT NULL,
 	user_password VARCHAR(50) NOT NULL,
 	role_id BIGINT NOT NULL
 		REFERENCES katstock.role
@@ -151,7 +151,7 @@ CREATE TABLE katstock.place (
 		ON DELETE RESTRICT,
 	stock_id BIGINT NOT NULL
 		REFERENCES katstock.stock
-		ON DELETE CASCADE
+		ON DELETE CASCADE,
 	stock_item_id BIGINT
 		REFERENCES katstock.stock_item
 		ON DELETE SET NULL

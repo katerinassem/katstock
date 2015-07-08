@@ -1,30 +1,31 @@
 ﻿
-DROP TABLE katstock.stock_item ;
-DROP TABLE katstock.place ;
-DROP TABLE katstock.place_type ;
-DROP TABLE katstock.waybill ;
-DROP TABLE katstock.organization ;
-DROP TABLE katstock.position ;
-DROP TABLE katstock.state ;
-DROP TABLE katstock.goods ;
-DROP TABLE katstock.measure ;
-DROP TABLE katstock.user;
-DROP TABLE katstock.stock_organization ;
-DROP TABLE katstock.role ;
-DROP TABLE katstock.stock ;
-DROP TABLE katstock.address ;
+DROP TABLE katstock.stock_item ,
+ katstock.place ,
+ katstock.place_type ,
+  katstock.waybill ,
+   katstock.organization ,
+    katstock.position ,
+     katstock.state ,
+      katstock.goods ,
+       katstock.measure ,
+        katstock.user,
+         katstock.stock_organization ,
+          katstock.role ,
+           katstock.stock ,
+            katstock.address 
+CASCADE;
 
-DROP SEQUENCE stock_item_seq ;
-DROP SEQUENCE waybill_seq ;
-DROP SEQUENCE organization_seq ;
-DROP SEQUENCE stock_organization_seq ;
-DROP SEQUENCE position_seq ;
-DROP SEQUENCE state_seq ;
-DROP SEQUENCE goods_seq ;
-DROP SEQUENCE measure_seq ;
-DROP SEQUENCE user_seq ;
-DROP SEQUENCE role_seq ;
-DROP SEQUENCE stock_seq ;
-DROP SEQUENCE address_seq ;
-DROP SEQUENCE place_seq ;
-DROP SEQUENCE place_type_seq ;
+DROP SEQUENCE katstock.stock_item_seq ;
+DROP SEQUENCE katstock.waybill_seq ;
+DROP SEQUENCE katstock.organization_seq ;
+DROP SEQUENCE katstock.stock_organization_seq ;
+DROP SEQUENCE katstock.position_seq ;
+DROP SEQUENCE katstock.state_seq ;
+DROP SEQUENCE katstock.goods_seq ;
+DROP SEQUENCE katstock.measure_seq ;
+DROP SEQUENCE katstock.user_seq ;
+DROP SEQUENCE katstock.role_seq ;
+DROP SEQUENCE katstock.stock_seq ;
+DROP SEQUENCE katstock.address_seq ;
+DROP SEQUENCE katstock.place_seq ;
+DROP SEQUENCE katstock.place_type_seq ;
