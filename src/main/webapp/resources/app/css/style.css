@@ -9,9 +9,12 @@ body {
 }
 
 .wrapper {
-    margin : 51px 0 0;
-    padding : 2em;
+    padding : 7% 2em 5em;
     min-height : 100%;
+}
+
+#partial-view {
+    float: inherit;
 }
 
 .footer {
@@ -29,5 +32,31 @@ body {
 .white-style-block {
     background-color : #FFFFFF;
     border-color : #D8D8D8;
+}
+a {
+    color : #585858;!important;
+}
+
+a:hover {
+    text-decoration : none;
+}
+
+.link-btn,
+h1,
+a:active,
+a:hover {
+    color : #eb9316;
+}
+
+.header {
+    position : fixed;
+    width : 100%;
+    z-index : 1000;
+}
+
+.header-content {
+    height : 100%;
+    margin : 1% 1% 0;
+    width : 98%;
 }
 

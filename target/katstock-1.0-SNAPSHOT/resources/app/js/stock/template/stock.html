@@ -1,0 +1,31 @@
+<h1>Stock "<%=stock.stockName%>"</h1>
+<div class="uk-row">
+    <div class="uk-thumbnail uk-width-1-1">
+        <img class="uk-width-1-3" src="<%=stock.url ? stock.url : 'resources/app/images/no-image.png' %>" alt="stock">
+        <div class="uk-width-2-3">
+            <div class="uk-caption uk-width-1-2">
+                <h3><%=stock.stockName %></h3>
+                <p><%=stock.description %></p>
+                <p><strong>Cost:</strong> <%=stock.costPerKgPerDay%> $ / kg*day</p>
+                <p><strong>Square:</strong> <%=stock.square%> sq.m.</p>
+            </div>
+            <div class="uk-caption uk-width-1-2">
+                <h3>Address:</h3>
+                <p><strong>Country:</strong> <%=stock.address.country%></p>
+                <p><strong>Region:</strong> <%=stock.address.region%></p>
+
+                <%if(stock.address.street) {%>
+                    <p><strong>Street:</strong> <%=stock.address.street%></p>
+                <%};%>
+
+                <%if(stock.address.building) {%>
+                    <p><strong>Building:</strong> <%=stock.address.building%></p>
+                <%};%>
+
+                <%if(stock.address.description) {%>
+                    <p><strong>Description:</strong> <%=stock.address.description%></p>
+                <%};%>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,49 +4,49 @@
 
 var Application = (function() {
 
-    var home = {};
     var Router = Backbone.Router.extend({
 
         routes : {
             "" : "home",
-            "!/login" : "login"
+            "login" : "login",
+            "stocks" : "stocks",
+            "stock/:id" : "stock"
         },
-
         home : function() {
 
             ///render home view
-            var home = ViewsFactory.home();
-            home.render();
+            ViewsFactory.home().render();
         },
-
         login : function() {
 
             //render login view
-            var login = ViewsFactory.login();
-            login.render();
+            ViewsFactory.login().render();
+        },
+        stocks : function() {
+
+            ViewsFactory.stocks().render();
+        },
+        stock : function(id) {
+
+            ViewsFactory.stock().render(id);
         }
     });
-
-    var ViewsFactory = {
-
-        home : function() {
-            return new HomeView();
-        },
-
-        login : function() {
-            return new LoginView();
-        }
-    };
 
     var Api = {
 
         init : function() {
             Api.router = new Router();
             Backbone.history.start();
+            ViewsFactory.header().render();
         },
 
         constants : {
-            PARTIAL_VIEW_SELECTOR : "#partial-view"
+            PARTIAL_VIEW_SELECTOR : "#partial-view",
+            HEADER_SELECTOR : "#header"
+        },
+
+        updateHeader : function() {
+            ViewsFactory.header().render();
         }
     };
 

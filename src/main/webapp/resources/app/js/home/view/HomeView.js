@@ -8,16 +8,12 @@ var HomeView = Backbone.View.extend({
 
     render : function() {
 
-        var instance = this;
-        render(
+        Util.renderView(
+            this,
             "home",
             "resources/app/js/home/template/",
             ".html",
-            {},
-            function(data) {
-                instance.template = data;
-                instance.$el.html(instance.template);
-            }
+            {}
         );
         return this;
     },

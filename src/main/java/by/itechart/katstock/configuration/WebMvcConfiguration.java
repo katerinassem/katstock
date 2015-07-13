@@ -1,18 +1,18 @@
 package by.itechart.katstock.configuration;
 
+import by.itechart.katstock.security.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ViewResolver;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,8 @@ import java.util.List;
  * Created by katsiaryna.siamikina on 06.07.2015.
  */
 @Configuration
-@ComponentScan(basePackages = {"by.itechart.katstock.web.controller"})
+@ComponentScan(basePackages = {"by.itechart.katstock.web.controller", "by/itechart/katstock/web/service"})
+@Import({JpaConfiguration.class, SecurityConfiguration.class})
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     private final String VIEW_PREFIX = "/WEB-INF/index/view/";
@@ -56,7 +57,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         List<HttpMessageConverter<?>> httpMessageConverterList = new ArrayList<HttpMessageConverter<?>>();
         httpMessageConverterList.add(mappingJackson2HttpMessageConverter);
         requestMappingHandlerAdapter.setMessageConverters(httpMessageConverterList);
-        requestMappingHandlerAdapter.setSupportedMethods("GET", "POST");
+        requestMappingHandlerAdapter.setSupportedMethods("GET", "POST", "PUT", "DELETE");
 
         return requestMappingHandlerAdapter;
     }
@@ -70,5 +71,19 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Override
     protected void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Bean
+    public ContextLoaderListener contextLoaderListener() {
+
+        ContextLoaderListener contextLoaderListener = new ContextLoaderListener();
+
+        return contextLoaderListener;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+
+        return new UserDetailsServiceImpl();
     }
 }

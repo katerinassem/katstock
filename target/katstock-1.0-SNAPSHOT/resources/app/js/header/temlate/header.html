@@ -1,0 +1,29 @@
+<div class="uk-navbar header-content">
+    <div class="navbar-header">
+        <a class="uk-navbar-brand" href="#">
+            <img alt="Brand" src="resources/app/images/brand.png">
+        </a>
+    </div>
+
+    <ul class="uk-navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#stocks">Stocks</a></li>
+    </ul>
+
+    <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+
+            <%if(userInfo.userId) {%>
+                <li><a href="#"><%=userInfo.email %>, <%=userInfo.role.roleName %></a></li>
+            <%};%>
+
+            <%if(!userInfo.userId) {%>
+                <li><a href="#login">Login</a></li>
+            <%};%>
+
+            <%if(userInfo.userId) {%>
+                <li><a href="/logout">Logout</a></li>
+            <%};%>
+        </ul>
+    </div>
+</div>

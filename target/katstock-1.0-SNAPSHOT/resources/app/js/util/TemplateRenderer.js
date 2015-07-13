@@ -3,27 +3,38 @@
  * Helps to render static templates from external files
  * USAGE:
  * var rendered_html;
- * render("home", "resources/app/js/home/template/", ".html", {}, function(data) {rendered_html = data;});
+ * render(homeView, "home", "resources/app/js/home/template/", ".html", { some : [] }, "some");
  */
 
-function render(templateName, templatePrefix, templateSuffix, templateData, successCallback) {
+var Util = (function() {
 
-    if (!render.templateCache) {
-        render.templateCache = {};
-    }
+    var util = {
 
-    if (!render.templateCache[templateName]) {
-        var templateUrl = templatePrefix + templateName + templateSuffix;
-        var templateContent;
+        renderView : function(viewInstance, templateName, templatePrefix, templateSuffix, templateData, variableName) {
 
-        $.ajax({
-            url: templateUrl,
-            method: 'GET',
-            success: successCallback
-        });
+            render(templateName, templatePrefix, templateSuffix, templateData,
+                function(data) {
+                    var settings = {
+                        variable : variableName
+                    };
+                    viewInstance.template = _.template(data, settings);
+                    viewInstance.template = viewInstance.template(templateData);
+                    viewInstance.$el.html(viewInstance.template);
+                }
+            );
+        }
+    };
 
-    }
-    else {
-        successCallback(render.templateCache[templateName])(templateData);
-    }
-}
+    var render = function(templateName, templatePrefix, templateSuffix, templateData, successCallback) {
+
+            var templateUrl = templatePrefix + templateName + templateSuffix;
+
+            $.ajax({
+                url: templateUrl,
+                method: 'GET',
+                success: successCallback
+            });
+    };
+
+    return util;
+})();

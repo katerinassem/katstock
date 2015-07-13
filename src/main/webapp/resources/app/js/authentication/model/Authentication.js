@@ -3,5 +3,13 @@
  */
 var Authentication = Backbone.Model.extend( {
 
-    url : "login"
+    url : function() {
+        return "login?email=" + this.email + "&password=" + this.password;
+    },
+
+    setCredentials : function(email, password) {
+        this.email = email;
+        this.password = password;
+    }
+
 });

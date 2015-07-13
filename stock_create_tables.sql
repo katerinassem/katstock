@@ -32,7 +32,8 @@ CREATE TABLE katstock.stock (
 	stock_name VARCHAR(20) NOT NULL,
 	description VARCHAR(200),
 	square INTEGER,
-	cost_per_kg_per_day MONEY NOT NULL,
+	cost_per_kg_per_day DECIMAL NOT NULL,
+	photo_url VARCHAR(500),
 /*	total_capacity INTEGER NOT NULL,
 	free_capacity INTEGER NOT NULL,
 */
@@ -51,6 +52,7 @@ CREATE TABLE katstock.role (
 
 CREATE TABLE katstock.user (
 	user_id BIGINT PRIMARY KEY,
+	enabled BOOLEAN NOT NULL,
 	user_name VARCHAR(20) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
 	email VARCHAR(40) NOT NULL,
@@ -70,11 +72,11 @@ CREATE TABLE katstock.position (
 
 CREATE TABLE katstock.waybill (
 	waybill_id BIGINT PRIMARY KEY,
-	total_cost MONEY NOT NULL,
+	total_cost DECIMAL NOT NULL,
 	total_weight INTEGER NOT NULL,
 	receipt_date DATE NOT NULL,
 	export_date DATE NOT NULL,
-	tax_cost MONEY NOT NULL,
+	tax_cost DECIMAL NOT NULL,
 	stock_id BIGINT NOT NULL
 		REFERENCES katstock.stock
 		ON DELETE CASCADE,
@@ -130,7 +132,7 @@ CREATE TABLE katstock.place_type (
 CREATE TABLE katstock.stock_item (
 	stock_item_id BIGINT PRIMARY KEY,
 	quantity INTEGER NOT NULL,
-	total_cost MONEY NOT NULL,
+	total_cost DECIMAL NOT NULL,
 	goods_id BIGINT NOT NULL
 		REFERENCES katstock.goods
 		ON DELETE RESTRICT,

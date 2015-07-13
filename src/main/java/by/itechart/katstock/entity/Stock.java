@@ -15,6 +15,7 @@ public class Stock extends BaseEntity {
     private String description;
     private Integer square;
     private BigDecimal costPerKgPerDay;
+    private String photoUrl;
 
     private Address address;
     private StockOrganization stockOrganization;
@@ -86,5 +87,14 @@ public class Stock extends BaseEntity {
 
     public void setStockOrganization(StockOrganization stockOrganization) {
         this.stockOrganization = stockOrganization;
+    }
+
+    @Column(name = "photo_url", length = 500)
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

@@ -6,16 +6,13 @@ var LoginView = Backbone.View.extend({
     el : $(Application.constants.PARTIAL_VIEW_SELECTOR),
 
     render : function() {
-        var instance = this;
-        render(
+
+        Util.renderView(
+            this,
             "login",
             "resources/app/js/authentication/template/",
             ".html",
-            {},
-            function(data){
-                instance.template = data;
-                instance.$el.html(instance.template);
-            }
+            {}
         )
     },
 
@@ -24,14 +21,30 @@ var LoginView = Backbone.View.extend({
     },
 
     login : function(){
-        var authentication = new Authentication( {
-            email : $("#inputEmail").val(),
-            password : $("#inputPassword").val()
-        });
-        authentication.save({
-            "method" : "POST",
-            "Content-type" : "application/json"
-        });
+
+        var authentication = new Authentication();
+        authentication.setCredentials(
+            $("#inputEmail").val(),
+            $("#inputPassword").val()
+        );
+
+        var attributes = {
+            "method": "POST"
+        };
+        var options = {
+            error: function () {
+                console.log("error authenication");
+            },
+
+            success: function () {
+                console.log("success authentication");
+            }
+        };
+
+        authentication.save(attributes, options)
+            .always(function() {
+                Application.updateHeader();
+            });
     },
 
     init : function() {

@@ -14,6 +14,7 @@ public class User extends BaseEntity {
     private String surname;
     private String email;
     private String userPassword;
+    private boolean enabled;
 
     private Role role;
     private StockOrganization stockOrganization;
@@ -86,4 +87,14 @@ public class User extends BaseEntity {
     public void setStockOrganization(StockOrganization stockOrganization) {
         this.stockOrganization = stockOrganization;
     }
+
+    @Column(name = "enabled", nullable = false)
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 }
