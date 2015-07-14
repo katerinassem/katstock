@@ -6,23 +6,23 @@
     </div>
 
     <ul class="uk-navbar-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#stocks">Stocks</a></li>
+        <li><a href="#" class="nav-item"><p>Home</p></a></li>
+        <li><a href="#stocks" class="nav-item"><p>Stocks</p></a></li>
     </ul>
 
     <div class="uk-navbar-flip">
         <ul class="uk-navbar-nav">
 
             <%if(userInfo.userId) {%>
-                <li><a href="#"><%=userInfo.email %>, <%=userInfo.role.roleName %></a></li>
+                <li><a href="#" class="nav-item"><p><%=userInfo.email %>, <%=userInfo.role.roleName %></p></a></li>
             <%};%>
 
             <%if(!userInfo.userId) {%>
-                <li><a href="#login">Login</a></li>
+                <li><a href="#login" class="nav-item"><p>Login</p></a></li>
             <%};%>
 
             <%if(userInfo.userId) {%>
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="/logout" class="nav-item"><p>Logout</p></a></li>
             <%};%>
         </ul>
     </div>

@@ -18,6 +18,9 @@ var ViewsFactory = (function() {
         },
         stock : function() {
             return new StockView();
+        },
+        waybill : function() {
+            return new WaybillView();
         }
     };
 })();

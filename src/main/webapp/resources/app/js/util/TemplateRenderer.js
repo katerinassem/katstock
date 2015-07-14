@@ -10,7 +10,7 @@ var Util = (function() {
 
     var util = {
 
-        renderView : function(viewInstance, templateName, templatePrefix, templateSuffix, templateData, variableName) {
+        renderView : function(viewInstance, templateName, templatePrefix, templateSuffix, templateData, variableName, successCallback) {
 
             render(templateName, templatePrefix, templateSuffix, templateData,
                 function(data) {
@@ -20,6 +20,26 @@ var Util = (function() {
                     viewInstance.template = _.template(data, settings);
                     viewInstance.template = viewInstance.template(templateData);
                     viewInstance.$el.html(viewInstance.template);
+                    if(successCallback) {
+                        successCallback(data);
+                    }
+                }
+            );
+        },
+
+        renderViewAfter : function(viewInstance, templateName, templatePrefix, templateSuffix, templateData, variableName, successCallback) {
+
+            render(templateName, templatePrefix, templateSuffix, templateData,
+                function(data) {
+                    var settings = {
+                        variable : variableName
+                    };
+                    viewInstance.template = _.template(data, settings);
+                    viewInstance.template = viewInstance.template(templateData);
+                    viewInstance.$el.append(viewInstance.template);
+                    if(successCallback) {
+                        successCallback();
+                    }
                 }
             );
         }

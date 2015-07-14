@@ -1,0 +1,115 @@
+<h1 class="uk-text-center">Waybill</h1>
+<hr class="uk-article-divider orange-divider-style">
+<div class="uk-flex uk-flex-center uk-margin-large">
+    <form class="uk-form uk-form-horizontal uk-width-3-4">
+
+        <fieldset>
+            <legend class="uk-text-center">
+                Common info
+            </legend>
+            <div class="uk-form-row uk-flex uk-flex-center uk-margin-large">
+                <div class="uk-width-1-2 uk-text-right uk-flex uk-flex-center">
+                    <p class="">Tax: </p>&nbsp
+                    <div>0</div>
+                </div>
+
+                <div class="uk-width-1-2 uk-text-right uk-flex uk-flex-center">
+                    <p class="">Total cost:</p>&nbsp
+                    <div>0</div>
+                </div>
+
+                <div class="uk-width-1-2 uk-flex uk-flex-center">
+                    <p class="">Total weight: </p>&nbsp
+                    <div>0</div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend class="uk-text-center">
+                Receipt & export dates
+            </legend>
+            <div class="uk-form-row uk-flex uk-flex-center uk-margin-large">
+                    <div class="uk-width-1-2 uk-flex uk-flex-right uk-margin-right">
+                        <div class="uk-form-icon">
+                            <i class="uk-icon-calendar"></i>
+                            <input type="" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-2 uk-margin-left">
+                        <div class="date-picker uk-form-icon">
+                            <i class="uk-icon-calendar"></i>
+                            <input type="" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+                        </div>
+                    </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend class="uk-text-center">
+                Transmitter & acceptor names
+            </legend>
+            <div class="uk-form-row uk-flex uk-flex-center uk-margin-large">
+                <div class="uk-width-1-2 uk-flex uk-flex-right uk-margin-right">
+                    <select>
+                    </select>
+                    <input placeholder="transmitter name">
+                </div>
+
+                <div class="uk-width-1-2 uk-margin-left">
+                    <select>
+                    </select>
+                    <input placeholder="acceptor name">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend class="uk-text-center">
+                Sender & receipent organizations
+            </legend>
+            <div class="uk-form-row uk-flex uk-flex-center uk-margin-large">
+                <div class="uk-width-1-2 uk-flex uk-flex-right uk-margin-right">
+                    <label for="sender-select-input" class="uk-form-label">Sender</label>
+                    <select id="sender-select-input"></select>
+                </div>
+
+                <div class="uk-width-1-2 uk-margin-left">
+                    <label for="receipent-select-input" class="uk-form-label">Receipent</label>
+                    <select id="receipent-select-input"></select>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="uk-form-row uk-flex uk-flex-center">
+            <button class="uk-button uk-button-large uk-button-success uk-width-1-4" type="submit">Save</button>
+        </div>
+
+    </form>
+</div>
+
+<h1 class="uk-text-center">Items</h1>
+<hr class="uk-article-divider orange-divider-style">
+<p id="add-stock-item" class="uk-icon-justify uk-icon-plus-square uk-margin-bottom-remove"></p>
+
+<!-- This is the modal -->
+<div id="place-picker" class="uk-modal uk-open">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <a class="uk-modal-close uk-close"></a>
+        </div>
+            <div class="uk-flex">
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+                <div class="uk-width-1-4 uk-margin">1</div>
+            </div>
+        <div class="uk-modal-footer">
+        </div>
+    </div>
+</div>

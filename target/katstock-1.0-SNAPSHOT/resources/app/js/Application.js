@@ -10,7 +10,8 @@ var Application = (function() {
             "" : "home",
             "login" : "login",
             "stocks" : "stocks",
-            "stock/:id" : "stock"
+            "stock/:id" : "stock",
+            "new-waybill/:id" : "newWaybill"
         },
         home : function() {
 
@@ -29,6 +30,10 @@ var Application = (function() {
         stock : function(id) {
 
             ViewsFactory.stock().render(id);
+        },
+        newWaybill : function(id) {
+
+            ViewsFactory.waybill().render(id);
         }
     });
 

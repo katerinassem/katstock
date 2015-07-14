@@ -1,12 +1,16 @@
-<h1>Available stocks:</h1>
+<h1 class="uk-text-center">Available stocks:</h1>
+<hr class="uk-article-divider orange-divider-style">
 <%_.forEach(stocks, function(stock, index){ %>
-    <div class="uk-row">
-        <div class="uk-thumbnail uk-width-1-1">
+    <div class="uk-row uk-margin-large-top">
+        <div class="uk-thumbnail uk-flex uk-flex-top uk-flex-space-around">
             <img class="uk-width-1-4" src="<%=stock.url ? stock.url : 'resources/app/images/no-image.png' %>" alt="stock">
-            <div class="uk-caption">
-                <h3><%=stock.stockName %></h3>
-                <p><%=stock.description %></p>
-                <p><a href="#stock/<%=stock.stockId%>" class="link-btn" role="button">More..</a></p>
+            <div class="uk-thumbnail-caption uk-width-1-2 uk-text-left uk-text-large uk-margin">
+                <h2><strong><%=stock.stockName %></strong></h2>
+                <p class="uk-text-truncate"><%=stock.description %></p>
+                <p>
+                    <a class="uk-button uk-button-success uk-button-large uk-margin-right" href="#new-waybill/<%=stock.stockId%>" role="button">Choose</a>
+                    <a href="#stock/<%=stock.stockId%>" class="link-btn" role="button">More..</a>
+                </p>
             </div>
         </div>
     </div>
