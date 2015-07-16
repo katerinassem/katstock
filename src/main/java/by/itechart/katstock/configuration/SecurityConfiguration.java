@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 
 /**
  * Created by katsiaryna.siamikina on 09.07.2015.
@@ -54,16 +56,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordParameter(PASSWORD_PARAMETER)
                 .failureHandler(authenticationFailureHandler())
                 .successHandler(authenticationSuccessHandler());
-        http.csrf()
-                .disable();
+        
+        http.csrf();
 
         http.logout()
                 .permitAll()
                 .logoutUrl(LOGOUT_URL)
                 .invalidateHttpSession(true);
 
-        http.exceptionHandling()
-                .accessDeniedHandler(new AccessDeniedHandlerImpl());
+        http.rememberMe()
+                .rememberMeParameter("remember");
     }
 
     @Bean

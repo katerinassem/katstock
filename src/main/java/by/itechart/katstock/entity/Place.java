@@ -1,5 +1,7 @@
 package by.itechart.katstock.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 /**
@@ -12,8 +14,8 @@ public class Place extends BaseEntity {
     private Long placeId;
     private Integer placeNumber;
     private boolean available;
-
     private PlaceType placeType;
+
     private Stock stock;
     private StockItem stockItem;
 
@@ -48,8 +50,8 @@ public class Place extends BaseEntity {
         this.available = available;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "place_type_id", nullable = false)
+    @Column(name = "place_type", nullable = false)
+    @Type(type = "by.itechart.katstock.util.hibernate.placetype.PlaceTypeEnumType")
     public PlaceType getPlaceType() {
         return placeType;
     }

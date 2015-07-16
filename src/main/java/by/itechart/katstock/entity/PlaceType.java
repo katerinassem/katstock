@@ -1,36 +1,22 @@
 package by.itechart.katstock.entity;
 
-import javax.persistence.*;
-
 /**
- * Created by katsiaryna.siamikina on 02.07.2015.
+ * Created by katsiaryna.siamikina on 15.07.2015.
  */
-@Entity
-@Table(name = "katstock.place_type")
-public class PlaceType extends BaseEntity {
+public enum PlaceType {
 
-    private Long placeTypeId;
-    private String placeTypeName;
+    OUTSIDE("outside"),
+    INSIDE("inside"),
+    REFRIGERATOR("refrigerator"),
+    TANK("tank");
 
+    protected String value;
 
-    @Id
-    @SequenceGenerator(name="place_type_generator", sequenceName="katstock.place_type_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "place_type_generator")
-    @Column(name = "place_type_id")
-    public Long getPlaceTypeId() {
-        return placeTypeId;
+    private PlaceType(String value) {
+        this.value = value;
     }
 
-    public void setPlaceTypeId(Long placeTypeId) {
-        this.placeTypeId = placeTypeId;
-    }
-
-    @Column(name = "place_name", nullable = false, length = 50)
-    public String getPlaceTypeName() {
-        return placeTypeName;
-    }
-
-    public void setPlaceTypeName(String placeTypeName) {
-        this.placeTypeName = placeTypeName;
+    public String getValue() {
+        return this.value;
     }
 }

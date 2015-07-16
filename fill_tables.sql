@@ -45,3 +45,65 @@ INSERT INTO katstock.stock(
             photo_url, address_id, stock_organization_id)
     VALUES (3, 'Hidest inc. stock', 'At the Hide Str.', 3000, 3, 
             NULL, 4, 1);
+
+            
+/**
+  * Places
+**/
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (1, 1, TRUE, 'inside', 1, null);
+    
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (2, 2, TRUE, 'inside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (3, 3, FALSE, 'inside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (4, 4, FALSE, 'inside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (5, 5, TRUE, 'inside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (6, 6, TRUE, 'inside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (7, 7, TRUE, 'inside', 1, null);
+
+    
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (8, 8, FALSE, 'outside', 1, null);
+    
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (9, 9, TRUE, 'outside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (10, 10, TRUE, 'outside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (11, 11, FALSE, 'outside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (12, 12, TRUE, 'outside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (13, 13, TRUE, 'outside', 1, null);
+
+    INSERT INTO katstock.place(
+            place_id, place_number, available, place_type, stock_id, stock_item_id)
+    VALUES (14, 14, TRUE, 'outside', 1, null);

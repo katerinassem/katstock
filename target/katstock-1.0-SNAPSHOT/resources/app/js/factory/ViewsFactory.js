@@ -21,6 +21,10 @@ var ViewsFactory = (function() {
         },
         waybill : function() {
             return new WaybillView();
+        },
+        placePicker : function() {
+            console.log("created");
+            return new PlacesView();
         }
     };
 })();

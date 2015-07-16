@@ -110,8 +110,7 @@ CREATE TABLE katstock.measure (
 CREATE TABLE katstock.goods (
 	goods_id BIGINT PRIMARY KEY,
 	unique_number BIGINT NOT NULL,
-	cost MONEY NOT NULL,
-	weight INTEGER NOT NULL,
+	cost DECIMAL NOT NULL,
 	description VARCHAR(100) NOT NULL,
 	storage_conditions VARCHAR(100),
 	measure_id BIGINT NOT NULL
@@ -119,14 +118,17 @@ CREATE TABLE katstock.goods (
 		ON DELETE RESTRICT	
 );
 
+CREATE TABLE katstock.goods_item (
+	goods_item_id BIGINT PRIMARY KEY, 
+	weight INTEGER NOT NULL,
+	goods_id BIGINT NOT NULL
+		REFERENCES katstock.goods
+		ON DELETE RESTRICT	
+);
+
 CREATE TABLE katstock.state (
 	state_id BIGINT PRIMARY KEY,
 	state_name VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE katstock.place_type (
-	place_type_id BIGINT PRIMARY KEY,
-	place_name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE katstock.stock_item (
@@ -144,13 +146,13 @@ CREATE TABLE katstock.stock_item (
 		ON DELETE RESTRICT		
 );
 
+CREATE TYPE katstock.PLACE_TYPE_NAME AS ENUM ('outside', 'inside', 'refrigerator', 'tank');
+
 CREATE TABLE katstock.place (
 	place_id BIGINT PRIMARY KEY,
 	place_number INTEGER NOT NULL,
 	available BOOLEAN NOT NULL,
-	place_type_id BIGINT NOT NULL
-		REFERENCES katstock.place_type
-		ON DELETE RESTRICT,
+	place_type katstock.PLACE_TYPE_NAME NOT NULL,
 	stock_id BIGINT NOT NULL
 		REFERENCES katstock.stock
 		ON DELETE CASCADE,
@@ -163,11 +165,11 @@ CREATE SEQUENCE katstock.stock_item_seq ;
 CREATE SEQUENCE katstock.waybill_seq ;
 CREATE SEQUENCE katstock.organization_seq ;
 CREATE SEQUENCE katstock.stock_organization_seq ;
-CREATE SEQUENCE katstock.place_type_seq ;
 CREATE SEQUENCE katstock.place_seq ;
 CREATE SEQUENCE katstock.position_seq ;
 CREATE SEQUENCE katstock.state_seq ;
 CREATE SEQUENCE katstock.goods_seq ;
+CREATE SEQUENCE katstock.goods_item_seq;
 CREATE SEQUENCE katstock.measure_seq ;
 CREATE SEQUENCE katstock.user_seq ;
 CREATE SEQUENCE katstock.role_seq ;

@@ -22,11 +22,11 @@ var LoginView = Backbone.View.extend({
 
     login : function(){
 
-        var authentication = new Authentication();
-        authentication.setCredentials(
-            $("#inputEmail").val(),
-            $("#inputPassword").val()
-        );
+        var authentication = new Authentication( {
+            "email" : $("#inputEmail").val(),
+            "password" : $("#inputPassword").val(),
+            "rememberMe" : $("#remember-me").prop("checked")
+        });
 
         var attributes = {
             "method": "POST"

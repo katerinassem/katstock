@@ -13,7 +13,6 @@ public class Goods extends BaseEntity {
     private Long goodsId;
     private Long uniqueNumber;
     private BigDecimal cost;
-    private Integer weight;
     private String description;
     private String storageConditions;
 
@@ -48,15 +47,6 @@ public class Goods extends BaseEntity {
 
     public void setCost(BigDecimal cost) {
         this.cost = cost;
-    }
-
-    @Column(name = "weight", nullable = false)
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
     }
 
     @Column(name = "description", nullable = false, length = 100)

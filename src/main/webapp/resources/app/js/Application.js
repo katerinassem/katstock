@@ -47,7 +47,8 @@ var Application = (function() {
 
         constants : {
             PARTIAL_VIEW_SELECTOR : "#partial-view",
-            HEADER_SELECTOR : "#header"
+            HEADER_SELECTOR : "#header",
+            PLACE_PICKER_SELECTOR : "#place-picker-content"
         },
 
         updateHeader : function() {

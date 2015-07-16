@@ -19,11 +19,11 @@
         </div>
 
         <div class="uk-width-1-4">
-            <a href="#place-picker" data-uk-modal class="uk-text-large uk-button uk-button-primary"><strong>Choose place</strong></a>
+            <a href="#place-picker" data-uk-modal class="choose-place-button uk-text-large uk-button uk-button-primary" data-place-type-select-selector="#<%=stockItem.index%>" data-place-type="outside"><strong>Choose place</strong></a>
             <p><strong>Type:</strong></p>
-            <select>
-                <option>1</option>
-                <option>2</option>
+            <select id="<%=stockItem.index%>" class="place-type-select-option">
+                <option>outside</option>
+                <option>inside</option>
             </select>
         </div>
     </form>

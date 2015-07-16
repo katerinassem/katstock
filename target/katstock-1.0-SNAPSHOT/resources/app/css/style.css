@@ -81,3 +81,33 @@ a:hover,
     border-color : #F5D0A9;
     border-width: 1ex;
 }
+
+.place-item {
+    border : 2px solid #F5D0A9;
+    background-color : #fff;
+    float : left;
+    width : 1em;
+    height : 1em;
+    margin : 0.2em;
+}
+
+.place-item.available-true:hover {
+    cursor : pointer;
+    background-color : #F5D0A9;
+}
+
+.place-item.available-false {
+    border-color: #bbbbbb;
+    background-color: #bbbbbb;
+}
+
+.place-item.available-reserved {
+    border-color: #659f13;
+    background-color: #659f13;
+}
+
+.place-item.available-reserved:hover {
+    cursor : pointer;
+    background-color : #F5D0A9;
+    border-color : #F5D0A9;
+}

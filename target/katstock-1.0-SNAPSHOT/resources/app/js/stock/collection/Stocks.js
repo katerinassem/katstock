@@ -11,11 +11,5 @@ var Stocks = Backbone.Collection.extend({
 
     modelId: function () {
         return "stockId";
-    },
-
-    toJSON: function () {
-        return this.map(function (model) {
-            return model.toJSON();
-        });
     }
 });
